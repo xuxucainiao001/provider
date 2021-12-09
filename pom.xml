@@ -1,0 +1,318 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.toseektech</groupId>
+	<artifactId>provider</artifactId>
+	<version>1.0.0</version>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.8.RELEASE</version>
+	</parent>
+
+	<properties>
+		<app-port>18001</app-port>
+		<app-name>${project.artifactId}</app-name>
+		<start-class>cn.toseektech.provider.ProviderApplication</start-class>		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<spring.mybatis>2.1.3</spring.mybatis>
+		<mybatis.generator.version>1.4.0</mybatis.generator.version>
+		<mysql.connector.version>8.0.20</mysql.connector.version>
+		<alibaba.sentienl.version>2.2.1.RELEASE</alibaba.sentienl.version>
+		<sentienl.nacos.version>1.7.0</sentienl.nacos.version>
+		<spring.cloud.nacos.version>2.2.1.RELEASE</spring.cloud.nacos.version>
+		<admin.version>2.2.4</admin.version>
+		<feign.version>2.2.4.RELEASE</feign.version>
+		<druid.version>1.1.10</druid.version>
+		<spring.rocketmq.version>2.1.1</spring.rocketmq.version>
+	</properties>
+
+
+	<dependencies>
+        
+        <!-- 第二方包-->
+		<dependency>
+			<groupId>cn.toseektech</groupId>
+			<artifactId>common</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.toseektech</groupId>
+			<artifactId>provider-remote</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.toseektech</groupId>
+			<artifactId>translation</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- alibaba的druid数据库连接池 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+        
+        <!-- springboot admin 监控 -->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>${admin.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+        
+         <!-- mybatis 逆向工程 -->
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>${mybatis.generator.version}</version>
+		</dependency>
+
+		<!-- Nacos 服务注册发现 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+			<version>${spring.cloud.nacos.version}</version>
+		</dependency>
+
+		<!-- Nacos 配置中心 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+			<version>${spring.cloud.nacos.version}</version>
+		</dependency>
+
+
+		<!-- sentinel 配置 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+			<version>${alibaba.sentienl.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-datasource-nacos</artifactId>
+			<version>${sentienl.nacos.version}</version>
+		</dependency>
+
+		<!-- rocketmq 配置 -->
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-spring-boot-starter</artifactId>
+			<version>${spring.rocketmq.version}</version>
+		</dependency>
+
+       	<!-- springboot 基础配置 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+        
+        
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<version>${feign.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${spring.mybatis}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${app-name}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<!-- 绑定source插件到Maven的生命周期,并在生命周期后执行绑定的source的goal -->
+				<executions>
+					<execution>
+						<!-- 绑定source插件到Maven的生命周期 -->
+						<phase>compile</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<useDefaultDelimiters>false</useDefaultDelimiters>
+					<delimiters>
+						<delimiter>@{*}</delimiter>
+					</delimiters>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<!-- springboot 启动指定main -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!--Mybatis代码自动生成器 -->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>${mybatis.generator.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId> mysql</groupId>
+						<artifactId> mysql-connector-java</artifactId>
+						<version>${mysql.connector.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.mybatis.generator</groupId>
+						<artifactId>mybatis-generator-core</artifactId>
+						<version>${mybatis.generator.version}</version>
+					</dependency>
+				</dependencies>
+
+				<!-- 不能每次打包都给覆盖了，会出问题 <executions> <execution> <id>Generate MyBatis Artifacts</id> 
+					<phase>package</phase> <goals> <goal>generate</goal> </goals> </execution> 
+					</executions> -->
+				<configuration>
+					<!--允许移动生成的文件 -->
+					<verbose>true</verbose>
+					<!-- 是否覆盖 -->
+					<overwrite>true</overwrite>
+					<!-- 自动生成的配置 -->
+					<configurationFile>src/main/resources/mybatis-generator.xml
+					</configurationFile>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+		<resources>
+			<!-- 打包前先排除所有文件) -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>*</exclude>
+				</excludes>
+			</resource>
+
+
+			<!-- 打包特定配置文件到class目录 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>bootstrap.properties</include>
+					<include>logback-spring.xml</include>
+					<include>docker/Dockerfile</include>
+					<include>mappers/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profileActive>dev</profileActive>
+				<nacos.namespace>1481937d-b83c-429b-a5d2-09dde1ceeaa7</nacos.namespace>
+				<nacos.address>47.114.161.66:8847,47.114.161.66:8848,47.114.161.66:8849</nacos.address>
+				<jvm.params>"-Xms512m -Xmx512m -Xmn256m -XX:MetaspaceSize=64m \
+					-XX:MaxMetaspaceSize=128m -XX:+HeapDumpOnOutOfMemoryError \
+					-XX:HeapDumpPath=/logs/oom/@{app-name} -XX:+UseConcMarkSweepGC \
+					-XX:+PrintGCDetails -Xloggc:/logs/gc/@{app-name}/gc.log"</jvm.params>
+			</properties>
+			<activation>
+				<!--默认激活 -->
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<profileActive>test</profileActive>
+				<nacos.namespace>ad5b173f-aa00-46fc-880e-f47608383d1a</nacos.namespace>
+				<nacos.address>47.114.161.66:8847,47.114.161.66:8848,47.114.161.66:8849</nacos.address>
+				<jvm.params>"-Xms512m -Xmx512m -Xmn256m -XX:MetaspaceSize=64m \
+					-XX:MaxMetaspaceSize=128m -XX:+HeapDumpOnOutOfMemoryError \
+					-XX:HeapDumpPath=/logs/oom/@{app-name} -XX:+UseConcMarkSweepGC \
+					-XX:+PrintGCDetails -Xloggc:/logs/gc/@{app-name}/gc.log"</jvm.params>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<profileActive>prod</profileActive>
+			</properties>
+		</profile>
+	</profiles>
+
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<url>http://www.nexus.toseektech.cn:8081/repository/maven-public/
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://www.nexus.toseektech.cn:8081/repository/maven-snapshots/
+			</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>
